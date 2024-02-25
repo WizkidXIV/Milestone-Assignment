@@ -9,4 +9,4 @@ const azumaruCharacter = azumaru(1075,260)
 
 const yukiCharacter = yuki(640, 230)
 
-const backgroundMusic = createBackgroundMusic('music/CT_Nina.ogg');
+

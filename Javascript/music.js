@@ -3,24 +3,34 @@ function createBackgroundMusic(filePath) {
     audioElement.setAttribute('src', filePath);
     audioElement.setAttribute('type', 'audio/ogg');
     audioElement.loop = true; // Enable looping
+
+    // Attempt to play the music and handle potential errors
+    audioElement.play().catch(error => {
+        console.error("Playback failed:", error);
+    });
+
+    // Append the audio element to the document body
     document.body.appendChild(audioElement);
 
-    // Play the music
-    audioElement.play()
-        .catch(error => {
-            console.error("Playback failed:", error);
-        });
-
-    // Expose controls to play and pause the music from outside the function
+    // Expose controls to play, pause, and set volume for the music from outside the function
     return {
         play: () => audioElement.play().catch(error => console.error("Playback failed:", error)),
         pause: () => audioElement.pause(),
-        setVolume: (volume) => audioElement.volume = volume 
+        setVolume: (volume) => { audioElement.volume = volume; } // Correct method to set volume
     };
 }
 
-// To play or resume the music
-backgroundMusic.play();
+// Initialize background music using your custom function
+const backgroundMusic = createBackgroundMusic('music/CT_Nina.ogg');
 
-// To set the volume (0.5 is 50% volume)
-backgroundMusic.setVolume(0.1);
+document.addEventListener('DOMContentLoaded', function () {
+    // To play or resume the music, ensuring it's called after the DOM is fully loaded
+    backgroundMusic.play();
+
+    // To set the volume (0.1 is 10% volume)
+    backgroundMusic.setVolume(0.1);
+    
+    document.getElementById('playMusic').addEventListener('click', function () {
+        backgroundMusic.play();
+    });
+});
