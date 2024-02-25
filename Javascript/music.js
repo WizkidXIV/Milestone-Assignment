@@ -15,15 +15,12 @@ function createBackgroundMusic(filePath) {
     return {
         play: () => audioElement.play().catch(error => console.error("Playback failed:", error)),
         pause: () => audioElement.pause(),
-        setVolume: (volume) => audioElement.volume = volume // Volume between 0.0 and 1.0
+        setVolume: (volume) => audioElement.volume = volume 
     };
 }
 
 // To play or resume the music
 backgroundMusic.play();
 
-// To pause the music
-backgroundMusic.pause();
-
 // To set the volume (0.5 is 50% volume)
-backgroundMusic.setVolume(0.5);
+backgroundMusic.setVolume(0.1);

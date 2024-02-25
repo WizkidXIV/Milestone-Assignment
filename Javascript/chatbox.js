@@ -1,3 +1,5 @@
+let isQuizStarted = false;
+
 function showChatBox(message, portraitUrl, characterName) {
     let chatBox = document.getElementById('chatBox');
     if (!chatBox) {
@@ -69,6 +71,20 @@ function showChatBox(message, portraitUrl, characterName) {
     const messageContainer = document.getElementById('messageContainer');
     messageContainer.innerHTML = `${nameSpan} ${message}`; // Combine styled name with message
 
+    if (!isQuizStarted) {
+        messageContainer.innerHTML = `<span style="color: yellow;">${characterName}:</span> ${message}`;
+        const startButton = document.createElement('button');
+        startButton.innerText = "I'm ready!";
+        startButton.onclick = function () {
+            isQuizStarted = true; // Update the state to indicate the quiz is starting
+            showChatBox("The quiz will now begin.", portraitUrl, characterName); // Modify this as needed to actually start your quiz
+            // Here you would actually start showing quiz questions
+        };
+        messageContainer.appendChild(startButton);
+    } else {
+        // Logic to display quiz questions or handle quiz state
+    }
+    
     // Ensure the chat box is visible
     chatBox.style.display = 'flex';
 }
