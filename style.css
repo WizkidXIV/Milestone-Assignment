@@ -1,0 +1,62 @@
+body {
+    background-color: #000;
+    /* Dark background for contrast */
+    font-family: 'Pixel', Arial, sans-serif;
+    /* Retro-style font, ensure you load or define 'Pixel' font if using */
+    color: #fff;
+    /* Light text color for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Full viewport height */
+    margin: 0;
+    /* Remove default margin */
+}
+
+#gameContainer {
+    width: 800px;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    /* Center the container */
+    background-image: url('Images/dig-site.png');
+    /* Path to your background image */
+    background-size: cover;
+    /* Cover the entire area */
+    background-position: center;
+    /* Center the background image */
+    border: 8px solid #000;
+    /* Solid black border for contrast */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+        /* Green neon glow */
+        0 0 40px rgba(0, 255, 0, 0.4),
+        /* Outer green glow for depth */
+        inset 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Inner light for embossed effect */
+    border-radius: 16px;
+    /* Rounded corners */
+}
+
+/* Optional: Add keyframes for a glowing effect on the border */
+@keyframes neonGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+            0 0 40px rgba(0, 255, 0, 0.4),
+            inset 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.8),
+            0 0 60px rgba(0, 255, 0, 0.6),
+            inset 0 0 15px rgba(255, 255, 255, 0.75);
+    }
+}
+
+#gameContainer {
+    animation: neonGlow 2s infinite alternate;
+    /* Apply the glowing animation */
+}

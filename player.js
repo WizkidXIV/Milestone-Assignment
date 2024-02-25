@@ -33,3 +33,23 @@ function playerCharacter(x, y) {
         element: element
     }
 }
+
+function updateViewport(characterX, characterY) {
+    const gameContainer = document.getElementById('gameContainer'); // Get your game container
+    if (!gameContainer) return;
+
+    // Calculate the center position of the viewport
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    // Adjust gameContainer scroll to keep the character in the center of the viewport
+    gameContainer.scrollLeft = characterX - centerX;
+    gameContainer.scrollTop = characterY - centerY;
+}
+
+function handleDirectionChange(direction) {
+    // Existing direction change handling...
+
+    // Update viewport position after character has moved
+    updateViewport(element.offsetLeft, element.offsetTop);
+}
