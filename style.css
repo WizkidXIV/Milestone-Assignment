@@ -29,10 +29,10 @@ body {
     /* Center the background image */
     border: 8px solid #000;
     /* Solid black border for contrast */
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
-        /* Green neon glow */
-        0 0 40px rgba(0, 255, 0, 0.4),
-        /* Outer green glow for depth */
+    box-shadow: 0 0 20px rgba(0, 183, 255, 0.6),
+        /* blue neon glow */
+        0 0 40px rgba(0, 183, 255, 0.4),
+        /* Outer blue glow for depth */
         inset 0 0 10px rgba(255, 255, 255, 0.5);
     /* Inner light for embossed effect */
     border-radius: 16px;
@@ -44,19 +44,19 @@ body {
 
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
-            0 0 40px rgba(0, 255, 0, 0.4),
+        box-shadow: 0 0 20px rgba(0, 183, 255, 0.6),
+            0 0 40px rgba(0, 183, 255, 0.4),
             inset 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     50% {
-        box-shadow: 0 0 30px rgba(0, 255, 0, 0.8),
-            0 0 60px rgba(0, 255, 0, 0.6),
+        box-shadow: 0 0 30px rgba(0, 183, 255, 0.8),
+            0 0 60px rgba(0, 183, 255, 0.6),
             inset 0 0 15px rgba(255, 255, 255, 0.75);
     }
 }
 
 #gameContainer {
     animation: neonGlow 2s infinite alternate;
-    /* Apply the glowing animation */
+    /* Apply the glowing animation */   
 }
