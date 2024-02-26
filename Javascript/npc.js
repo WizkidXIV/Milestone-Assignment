@@ -8,7 +8,7 @@ function stella(x, y) {
     // Adds a click event listener to Stella
     element.addEventListener('click', function () {
         showChatBox('Alright Aldo! Time to test your dragon knowledge. If you get more than three questions wrong...I am afraid I won\'t be able to let you advance! Perhaps talking with our allies will help you prepare.',
-            'images/stella-portrait.png', 'Stella');
+            'images/stella-portrait.png', 'Stella', startQuiz);
     });
 
     return {

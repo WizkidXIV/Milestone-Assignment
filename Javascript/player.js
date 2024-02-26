@@ -23,7 +23,7 @@ function playerCharacter(x, y) {
                 element.src = direction ? 'Images/Aldo-down.gif' : 'Images/Aldo-static-south.gif';
                 break;
             default:
-                element.src = 'Images/Aldo-static-south.gif'; // Default static image
+                element.src = 'Images/Aldo-static-north.gif'; // Default static image
         }
     }
 
@@ -53,55 +53,55 @@ function handleDirectionChange(direction) {
     updateViewport(element.offsetLeft, element.offsetTop);
 }
 
-document.addEventListener('keydown', function (event) {
-    if (event.code === 'Space') {
-        // Check if the player is next to Stella
-        if (isPlayerNextToStella()) {
-            // Display the chat window
-            showChatWindow();
-        }
-    }
-});
+// document.addEventListener('keydown', function (event) {
+//     if (event.code === 'Space') {
+//         // Check if the player is next to Stella
+//         if (isPlayerNextToStella()) {
+//             // Display the chat window
+//             showChatWindow();
+//         }
+//     }
+// });
 
-function isPlayerNextToStella() {
-    const playerRect = playerCharacter.element.getBoundingClientRect();
-    const stellaRect = stella.element.getBoundingClientRect();
+// function isPlayerNextToStella() {
+//     const playerRect = playerCharacter.element.getBoundingClientRect();
+//     const stellaRect = stella.element.getBoundingClientRect();
 
-    // Define a proximity threshold (e.g., 50 pixels)
-    const proximityThreshold = 50;
+//     // Define a proximity threshold (e.g., 50 pixels)
+//     const proximityThreshold = 50;
 
-    // Check if within proximity on either the X or Y axis
-    const isCloseX = Math.abs(playerRect.right - stellaRect.left) <= proximityThreshold ||
-        Math.abs(playerRect.left - stellaRect.right) <= proximityThreshold;
-    const isCloseY = Math.abs(playerRect.bottom - stellaRect.top) <= proximityThreshold ||
-        Math.abs(playerRect.top - stellaRect.bottom) <= proximityThreshold;
+//     // Check if within proximity on either the X or Y axis
+//     const isCloseX = Math.abs(playerRect.right - stellaRect.left) <= proximityThreshold ||
+//         Math.abs(playerRect.left - stellaRect.right) <= proximityThreshold;
+//     const isCloseY = Math.abs(playerRect.bottom - stellaRect.top) <= proximityThreshold ||
+//         Math.abs(playerRect.top - stellaRect.bottom) <= proximityThreshold;
 
-    return isCloseX && isCloseY;
-}
+//     return isCloseX && isCloseY;
+// }
 
-function showChatWindow() {
-    let chatWindow = document.getElementById('chatWindow');
-    if (!chatWindow) {
-        chatWindow = document.createElement('div');
-        chatWindow.id = 'chatWindow';
-        chatWindow.style.position = 'fixed';
-        chatWindow.style.bottom = '20px';
-        chatWindow.style.left = '50%';
-        chatWindow.style.transform = 'translateX(-50%)';
-        chatWindow.style.backgroundColor = 'white';
-        chatWindow.style.padding = '20px';
-        chatWindow.style.borderRadius = '10px';
-        chatWindow.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-        chatWindow.innerText = 'Stella: Hello there! How can I help you today?';
+// function showChatWindow() {
+//     let chatWindow = document.getElementById('chatWindow');
+//     if (!chatWindow) {
+//         chatWindow = document.createElement('div');
+//         chatWindow.id = 'chatWindow';
+//         chatWindow.style.position = 'fixed';
+//         chatWindow.style.bottom = '20px';
+//         chatWindow.style.left = '50%';
+//         chatWindow.style.transform = 'translateX(-50%)';
+//         chatWindow.style.backgroundColor = 'white';
+//         chatWindow.style.padding = '20px';
+//         chatWindow.style.borderRadius = '10px';
+//         chatWindow.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+//         chatWindow.innerText = 'Stella: Hello there! How can I help you today?';
 
-        // Close button
-        const closeButton = document.createElement('button');
-        closeButton.innerText = 'Close';
-        closeButton.onclick = function () {
-            chatWindow.remove();
-        };
+//         // Close button
+//         const closeButton = document.createElement('button');
+//         closeButton.innerText = 'Close';
+//         closeButton.onclick = function () {
+//             chatWindow.remove();
+//         };
 
-        chatWindow.appendChild(closeButton);
-        document.body.appendChild(chatWindow);
-    }
-}
+//         chatWindow.appendChild(closeButton);
+//         document.body.appendChild(chatWindow);
+//     }
+// }

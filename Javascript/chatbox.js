@@ -9,10 +9,10 @@ function showChatBox(message, portraitUrl, characterName) {
         chatBox.style.bottom = '20px';
         chatBox.style.left = '50%';
         chatBox.style.transform = 'translateX(-50%)';
-        chatBox.style.backgroundColor = 'rgba(0, 0, 139, 0.7)'; // Dark blue with transparency
-        chatBox.style.color = 'white'; // White text
+        chatBox.style.backgroundColor = 'rgba(0, 0, 139, 0.7)'; 
+        chatBox.style.color = 'white'; 
         chatBox.style.padding = '10px';
-        chatBox.style.border = '2px solid white'; // White border
+        chatBox.style.border = '2px solid white'; 
         chatBox.style.borderRadius = '5px';
         chatBox.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         chatBox.style.display = 'flex';
@@ -30,11 +30,11 @@ function showChatBox(message, portraitUrl, characterName) {
             portrait.id = 'characterPortrait';
             portrait.style.position = 'fixed';
             portrait.style.bottom = '20px';
-            portrait.style.left = 'calc(35% - 200px)'; // Adjust position to not overlap the chat box directly
-            portrait.style.width = '250px'; // Set your desired width
-            portrait.style.height = 'auto'; // Maintain aspect ratio
-            portrait.style.borderRadius = '10px'; // Optional styling
-            portrait.style.zIndex = 99; // Ensure portrait is behind the chatBox
+            portrait.style.left = 'calc(35% - 200px)'; 
+            portrait.style.width = '250px'; 
+            portrait.style.height = 'auto'; 
+            portrait.style.borderRadius = '10px'; 
+            portrait.style.zIndex = 99; 
             document.body.appendChild(portrait);
         }
         portrait.src = portraitUrl;
@@ -51,40 +51,53 @@ function showChatBox(message, portraitUrl, characterName) {
         closeButton.style.background = 'red';
         closeButton.style.border = 'none';
         closeButton.style.padding = '5px 10px';
-        closeButton.style.marginLeft = 'auto'; // Pushes it to the far right
+        closeButton.style.marginLeft = 'auto'; 
         closeButton.style.cursor = 'pointer';
         closeButton.onclick = function () {
-            chatBox.style.display = 'none'; // Hide the chat box
-            portrait.style.display = 'none'; // Also hide the portrait
+            chatBox.style.display = 'none'; 
+            portrait.style.display = 'none';
         };
         chatBox.appendChild(closeButton);
     } else {
-        // If the chatBox already exists, ensure its z-index is set correctly
         chatBox.style.zIndex = 100;
     }
 
     const portrait = document.getElementById('characterPortrait');
-    portrait.style.display = 'block'; // Make sure the portrait is shown when chat box is displayed
+    portrait.style.display = 'block'; 
     portrait.src = portraitUrl; // Update the portrait image
 
     const nameSpan = `<span style="color: yellow;">${characterName}:</span>`;
     const messageContainer = document.getElementById('messageContainer');
-    messageContainer.innerHTML = `${nameSpan} ${message}`; // Combine styled name with message
+    messageContainer.innerHTML = `${nameSpan} ${message}`; 
 
     if (!isQuizStarted) {
         messageContainer.innerHTML = `<span style="color: yellow;">${characterName}:</span> ${message}`;
         const startButton = document.createElement('button');
         startButton.innerText = "I'm ready!";
         startButton.onclick = function () {
-            isQuizStarted = true; // Update the state to indicate the quiz is starting
-            showChatBox("The quiz will now begin.", portraitUrl, characterName); // Modify this as needed to actually start your quiz
-            // Here you would actually start showing quiz questions
+            isQuizStarted = true;
+            showChatBox("The quiz will now begin.", portraitUrl, characterName); 
+            startQuiz();
         };
         messageContainer.appendChild(startButton);
+
     } else {
         // Logic to display quiz questions or handle quiz state
     }
     
     // Ensure the chat box is visible
     chatBox.style.display = 'flex';
+}
+
+function startQuiz() {
+    if (currentQuestionIndex < quizQuestions.length) {
+        let question = quizQuestions[currentQuestionIndex];
+        showQuestion(question); // Make sure this function displays the quiz question properly
+    } else {
+        // Quiz is over, show results and reset variables
+        showChatBox(`Quiz over! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`, 'images/stella-portrait.png', 'Stella');
+        isQuizStarted = false;
+        currentQuestionIndex = 0;
+        correctAnswersCount = 0;
+    }
 }
