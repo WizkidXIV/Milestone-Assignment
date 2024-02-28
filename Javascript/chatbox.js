@@ -92,10 +92,20 @@ function showChatBox(message, portraitUrl, characterName) {
 function startQuiz() {
     if (currentQuestionIndex < quizQuestions.length) {
         let question = quizQuestions[currentQuestionIndex];
-        showQuestion(question); // Make sure this function displays the quiz question properly
+        showQuestion(question);
     } else {
         // Quiz is over, show results and reset variables
         showChatBox(`Quiz over! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`, 'images/stella-portrait.png', 'Stella');
+
+        // Check if the player wins or fails
+        if (correctAnswersCount >= 3) {
+            // Player wins
+            showChatBox('Congratulations! You passed! you\'re ready to take on the dragon!.', 'images/stella-happy.png', 'Stella');
+        } else {
+            // Player fails
+            showChatBox('Unfortunately, you didn\'t pass...study harder and Try again!', 'images/stella-sad.png', 'Stella');
+        }
+
         isQuizStarted = false;
         currentQuestionIndex = 0;
         correctAnswersCount = 0;
