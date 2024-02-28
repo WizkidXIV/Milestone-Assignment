@@ -2,7 +2,7 @@ function playerCharacter(x, y) {
     const element = newImage('Images/Aldo-static-south.gif') 
     element.style.zIndex = 1;
 
-    let lastDirection = 'north'; // Default direction when initialized
+    let lastDirection = 'north'; // Sets the default direction when initialized
 
     function handleDirectionChange(direction) {
         if (direction) {

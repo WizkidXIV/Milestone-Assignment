@@ -36,11 +36,28 @@ function handleAnswer(selectedIndex, correctIndex) {
     }
     currentQuestionIndex++;
     if (currentQuestionIndex < quizQuestions.length) {
+        // If there are more questions, this shows the next question
         showQuestion(quizQuestions[currentQuestionIndex]);
     } else {
-        showChatBox(`Quiz over! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`, 'images/stella-portrait.png', 'Stella');
-        isQuizStarted = false;
-        currentQuestionIndex = 0;
-        correctAnswersCount = 0;
+        // If there are no more questions this triggers the quiz to finish
+        let finalScoreMessage = `Quiz over! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`;
+        // Displays the final score immediately
+        showChatBox(finalScoreMessage, 'images/stella-portrait.png', 'Stella');
+
+        // Determines win or lose state based on score
+        setTimeout(() => {
+            if (correctAnswersCount >= 3) {
+                // Player wins
+                showChatBox('Congratulations! You passed! You\'re ready to take on the dragon!', 'images/stella-portrait.png', 'Stella');
+            } else {
+                // Player fails
+                showChatBox('Unfortunately, you didn\'t pass...study harder and try again!', 'images/stella-portrait.png', 'Stella');
+            }
+
+            // Resets quiz for retry
+            isQuizStarted = false;
+            currentQuestionIndex = 0;
+            correctAnswersCount = 0;
+        }, 2000); // Delay to allow the player to read the final score before seeing the outcome
     }
 }

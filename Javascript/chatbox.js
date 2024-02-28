@@ -18,12 +18,12 @@ function showChatBox(message, portraitUrl, characterName) {
         chatBox.style.display = 'flex';
         chatBox.style.flexDirection = 'row';
         chatBox.style.alignItems = 'center';
-        chatBox.style.maxWidth = '80%'; // Prevent the chat box from being too wide
-        chatBox.style.boxSizing = 'border-box'; // Include padding and border in the element's total width and height
-        chatBox.style.zIndex = 100; // Ensure chatBox is in front
+        chatBox.style.maxWidth = '80%'; // Prevents the chat box from being too wide
+        chatBox.style.boxSizing = 'border-box'; // Included padding and border in the element's total width and height
+        chatBox.style.zIndex = 100; // Ensures the chatBox is in frontmost layer
         document.body.appendChild(chatBox);
 
-        // Portrait
+        // Calls Portrait function
         let portrait = document.getElementById('characterPortrait');
         if (!portrait) {
             portrait = document.createElement('img');
@@ -39,12 +39,14 @@ function showChatBox(message, portraitUrl, characterName) {
         }
         portrait.src = portraitUrl;
 
-        // Message container
+
+        
+        // Message container function
         const messageContainer = document.createElement('div');
         messageContainer.id = 'messageContainer';
         chatBox.appendChild(messageContainer);
 
-        // Close button
+        // Close button function
         const closeButton = document.createElement('button');
         closeButton.innerText = 'Close';
         closeButton.style.color = 'white';
@@ -64,7 +66,7 @@ function showChatBox(message, portraitUrl, characterName) {
 
     const portrait = document.getElementById('characterPortrait');
     portrait.style.display = 'block'; 
-    portrait.src = portraitUrl; // Update the portrait image
+    portrait.src = portraitUrl; // Updates the portrait image to NPC currently clicked
 
     const nameSpan = `<span style="color: yellow;">${characterName}:</span>`;
     const messageContainer = document.getElementById('messageContainer');
@@ -82,32 +84,35 @@ function showChatBox(message, portraitUrl, characterName) {
         messageContainer.appendChild(startButton);
 
     } else {
-        // Logic to display quiz questions or handle quiz state
     }
-    
-    // Ensure the chat box is visible
+
     chatBox.style.display = 'flex';
 }
 
-function startQuiz() {
-    if (currentQuestionIndex < quizQuestions.length) {
-        let question = quizQuestions[currentQuestionIndex];
-        showQuestion(question);
-    } else {
-        // Quiz is over, show results and reset variables
-        showChatBox(`Quiz over! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`, 'images/stella-portrait.png', 'Stella');
+// function startQuiz() {
+//     if (currentQuestionIndex < quizQuestions.length) {
+//         let question = quizQuestions[currentQuestionIndex];
+//         showQuestion(question);
+//     } else {
+//         // Quiz is over, show results
+//         let resultsMessage = `Quiz over!!!! You got ${correctAnswersCount} out of ${quizQuestions.length} questions right.`;
+//         showChatBox(resultsMessage, 'images/stella-portrait.png', 'Stella', true); // Ensure this clears previous messages
 
-        // Check if the player wins or fails
-        if (correctAnswersCount >= 3) {
-            // Player wins
-            showChatBox('Congratulations! You passed! you\'re ready to take on the dragon!.', 'images/stella-happy.png', 'Stella');
-        } else {
-            // Player fails
-            showChatBox('Unfortunately, you didn\'t pass...study harder and Try again!', 'images/stella-sad.png', 'Stella');
-        }
+//         // Determine win or fail state
+//         let outcomeMessage = correctAnswersCount >= 3 ?
+//             'Congratulations! You passed! You\'re ready to take on the dragon!' :
+//             'Unfortunately, you didn\'t pass...study harder and try again!';
+//         let outcomeImage = correctAnswersCount >= 3 ? 'images/stella-happy.png' : 'images/stella-sad.png';
 
-        isQuizStarted = false;
-        currentQuestionIndex = 0;
-        correctAnswersCount = 0;
-    }
-}
+//         // Use a timeout to delay the display of the outcome message to ensure the user reads the results first
+//         setTimeout(() => {
+//             showChatBox(outcomeMessage, outcomeImage, 'Stella', true); // This call uses 'true' for shouldOverwrite to ensure it replaces the previous message
+//         }, 2000); // Adjust the delay as necessary
+
+//         // Reset quiz state for potential restart
+//         isQuizStarted = false;
+//         currentQuestionIndex = 0;
+//         correctAnswersCount = 0;
+//     }
+// }
+

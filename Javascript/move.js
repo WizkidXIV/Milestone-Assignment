@@ -18,7 +18,7 @@ function move(element) {
         function moveCharacter() {
             requestAnimationFrame(moveCharacter);
 
-            let moveAmount = 1 * speedMultiplier; // Adjust move amount based on speedMultiplier
+            let moveAmount = 1 * speedMultiplier; // Adjusts move amount based on speedMultiplier
 
             if (direction === 'west') x -= 2;
             if (direction === 'north') y += 2;
@@ -33,7 +33,7 @@ function move(element) {
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Shift') {
-                speedMultiplier = 4; // Double the speed when Shift is held down
+                speedMultiplier = 4; // Doubles the speed when Shift is held down
             }
 
             if (e.repeat) return;
@@ -58,11 +58,11 @@ function move(element) {
 
         document.addEventListener('keyup', function (e) {
             if (e.key === 'Shift') {
-                speedMultiplier = 2; // Reset to normal speed when Shift is released
+                speedMultiplier = 2; // Resets to normal speed when Shift is released
             }
 
             if (["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"].includes(e.key)) {
-                direction = null; // Stop moving when arrow keys are released
+                direction = null; // Stops player from  moving when arrow keys are released
             }
 
             if (callback) callback(direction);
